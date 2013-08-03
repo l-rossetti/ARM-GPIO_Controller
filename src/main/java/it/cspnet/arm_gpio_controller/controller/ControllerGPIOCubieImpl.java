@@ -8,6 +8,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ *
+ * @author Rossetti Leonardo
+ * @author Sarti Francesco, email: francescosarti@libero.it
+ */
 
 public class ControllerGPIOCubieImpl implements ControllerGPIO {
     

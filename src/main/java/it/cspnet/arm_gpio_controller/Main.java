@@ -6,6 +6,12 @@ import it.cspnet.arm_gpio_controller.model.Pin;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ *
+ * @author Rossetti Leonardo
+ * @author Sarti Francesco, email: francescosarti@libero.it
+ */
+
 public class Main {
     
     public static void main( String[] args ) throws InterruptedException {

@@ -1,5 +1,10 @@
 package it.cspnet.arm_gpio_controller.model;
 
+/**
+ *
+ * @author Rossetti Leonardo
+ * @author Sarti Francesco, email: francescosarti@libero.it
+ */
 
 public class Pin {
 

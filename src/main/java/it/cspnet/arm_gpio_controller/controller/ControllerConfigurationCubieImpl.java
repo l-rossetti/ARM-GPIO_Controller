@@ -2,6 +2,11 @@ package it.cspnet.arm_gpio_controller.controller;
 
 import java.io.FileNotFoundException;
 
+/**
+ *
+ * @author Rossetti Leonardo
+ * @author Sarti Francesco, email: francescosarti@libero.it
+ */
 
 public class ControllerConfigurationCubieImpl implements ControllerConfiguration {
 
