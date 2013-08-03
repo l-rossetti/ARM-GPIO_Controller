@@ -9,5 +9,6 @@ import java.io.FileNotFoundException;
  */
 
 public interface ConfigurationService {
+    
     public abstract String readPath() throws FileNotFoundException;
 }

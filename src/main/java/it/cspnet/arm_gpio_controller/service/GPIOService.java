@@ -10,7 +10,7 @@ import java.io.IOException;
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
 
- public interface ServiceGPIO {
+ public interface GPIOService {
     
      public abstract void writePinValue( Pin pin, int value ) throws FileNotFoundException;
      

@@ -1,7 +1,7 @@
 package it.cspnet.arm_gpio_controller.service.impl;
 
 import it.cspnet.arm_gpio_controller.model.Pin;
-import it.cspnet.arm_gpio_controller.service.ServiceGPIO;
+import it.cspnet.arm_gpio_controller.service.GPIOService;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,7 +15,7 @@ import java.io.PrintWriter;
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
 
-public class Cubieboard_GPIOServiceImpl implements ServiceGPIO {
+public class Cubieboard_GPIOServiceImpl implements GPIOService {
     
     @Override
     public void writePinValue( Pin pin, int value ) throws FileNotFoundException {

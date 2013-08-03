@@ -1,6 +1,6 @@
 package it.cspnet.arm_gpio_controller;
 
-import it.cspnet.arm_gpio_controller.service.ServiceGPIO;
+import it.cspnet.arm_gpio_controller.service.GPIOService;
 import it.cspnet.arm_gpio_controller.service.impl.Cubieboard_GPIOServiceImpl;
 import it.cspnet.arm_gpio_controller.model.Pin;
 import java.io.FileNotFoundException;
@@ -22,7 +22,7 @@ public class Main {
             System.exit(1);
         }
         
-        ServiceGPIO serviceGPIO = new Cubieboard_GPIOServiceImpl();
+        GPIOService serviceGPIO = new Cubieboard_GPIOServiceImpl();
         
         Pin pe11 = new Pin( "pe11", "/sys/devices/virtual/misc/sun4i-gpio/pin/" );
         pe11.setType( Pin.OUTPUT );
