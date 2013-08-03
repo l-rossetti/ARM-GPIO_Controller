@@ -12,6 +12,7 @@ import java.io.IOException;
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
 
+//a simple blinking led application
 public class Main {
     
     public static void main( String[] args ) throws InterruptedException {
@@ -21,20 +22,20 @@ public class Main {
             System.exit(1);
         }
         
-        ServiceGPIO controllerGPIO = new Cubieboard_GPIOServiceImpl();
+        ServiceGPIO serviceGPIO = new Cubieboard_GPIOServiceImpl();
         
         Pin pe11 = new Pin( "pe11", "/sys/devices/virtual/misc/sun4i-gpio/pin/" );
         pe11.setType( Pin.OUTPUT );
         
         try {
-            pe11.setValue( controllerGPIO.readPinValue(pe11) );
+            pe11.setValue( serviceGPIO.readPinValue(pe11) );
             while(true){
                 
-                controllerGPIO.writePinValue(pe11, Pin.ON);
+                serviceGPIO.writePinValue(pe11, Pin.ON);
                 System.out.println("Acceso");
                 Thread.sleep(500);
                 
-                controllerGPIO.writePinValue(pe11, Pin.OFF);
+                serviceGPIO.writePinValue(pe11, Pin.OFF);
                 System.out.println("Spento");
                 Thread.sleep(500);
             }
