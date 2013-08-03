@@ -1,4 +1,4 @@
-package it.cspnet.arm_gpio_controller.controller;
+package it.cspnet.arm_gpio_controller.service;
 
 import java.io.FileNotFoundException;
 
@@ -8,6 +8,6 @@ import java.io.FileNotFoundException;
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
 
-public interface ControllerConfiguration {
+public interface ConfigurationService {
     public abstract String readPath() throws FileNotFoundException;
 }
