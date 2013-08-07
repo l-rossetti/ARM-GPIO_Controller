@@ -28,7 +28,7 @@ public class Cubieboard_GPIOServiceImpl implements GPIOService {
     
     @Override
     public int readPinValue( Pin pin ) throws FileNotFoundException, IOException {
-        BufferedReader reader = new BufferedReader( new FileReader( new File( pin.getPath() + pin.getName() )));
-        return Integer.parseInt( reader.readLine() );
+        BufferedReader reader = new BufferedReader(new FileReader(new File(pin.getPath() + pin.getName())));
+        return Integer.parseInt(reader.readLine());
     }
 }
