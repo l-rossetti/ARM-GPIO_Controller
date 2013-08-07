@@ -32,24 +32,24 @@ public class Main {
             while(true){
                 
                 serviceGPIO.writePinValue(pe11, Pin.ON);
-                System.out.println("Acceso");
+                System.out.println("Led ON");
                 Thread.sleep(500);
                 
                 serviceGPIO.writePinValue(pe11, Pin.OFF);
-                System.out.println("Spento");
+                System.out.println("Led OFF");
                 Thread.sleep(500);
             }
         } catch (FileNotFoundException ex) {
-            System.err.println("### ERRORE: ###\n\n" + ex.toString());
+            System.err.println("### ERROR: ###\n\n" + ex.toString());
             System.exit(2);
         } catch (IOException ex) {
-            System.err.println("### ERRORE: ###\n\n" + ex.toString());
+            System.err.println("### ERROR: ###\n\n" + ex.toString());
             System.exit(3);
         }
     }
 
     private static void printHelp() {
-        System.out.println("Usage:\njava ControllerGPIO {PIN NAME}");
+        System.out.println("Usage:\njava ControllerGPIO {PIN_NAME}");
     }
 
 }
