@@ -2,7 +2,7 @@ package it.cspnet.arm_gpio_controller.model;
 
 /**
  *
- * @author Rossetti Leonardo
+ * @author Rossetti Leonardo, email: leonardo.rossetti5@gmail.com
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
 

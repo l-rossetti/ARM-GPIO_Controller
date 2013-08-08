@@ -8,7 +8,7 @@ import java.io.IOException;
 
 /**
  *
- * @author Rossetti Leonardo
+ * @author Rossetti Leonardo, email: leonardo.rossetti5@gmail.com
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
 
