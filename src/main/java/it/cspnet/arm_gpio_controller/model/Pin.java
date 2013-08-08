@@ -10,8 +10,10 @@ public class Pin {
 
     public static final String INPUT = "input";
     public static final String OUTPUT = "output";
-    public static final int ON = 0x1;     
-    public static final int OFF = 0x0; 
+    public static final int ON_HIGH = 0x1;     
+    public static final int OFF_HIGH = 0x0;
+    public static final int ON_LOW = 0x0;     
+    public static final int OFF_LOW= 0x1; 
     
     private String name;
     private String path;

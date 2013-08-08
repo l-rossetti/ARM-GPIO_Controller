@@ -31,11 +31,11 @@ public class Main {
             pe11.setValue( serviceGPIO.readPinValue(pe11) );
             while(true){
                 
-                serviceGPIO.writePinValue(pe11, Pin.ON);
+                serviceGPIO.writePinValue(pe11, Pin.ON_HIGH);
                 System.out.println("Led ON");
                 Thread.sleep(500);
                 
-                serviceGPIO.writePinValue(pe11, Pin.OFF);
+                serviceGPIO.writePinValue(pe11, Pin.OFF_HIGH);
                 System.out.println("Led OFF");
                 Thread.sleep(500);
             }
@@ -49,7 +49,7 @@ public class Main {
     }
 
     private static void printHelp() {
-        System.out.println("Usage:\njava ControllerGPIO {PIN_NAME}");
+        System.out.println("Usage:\njava program {PIN_NAME}");
     }
 
 }
