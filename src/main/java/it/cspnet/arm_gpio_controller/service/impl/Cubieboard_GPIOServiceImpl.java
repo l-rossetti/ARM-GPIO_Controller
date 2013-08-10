@@ -31,4 +31,8 @@ public class Cubieboard_GPIOServiceImpl implements GPIOService {
         BufferedReader reader = new BufferedReader(new FileReader(new File(pin.getPath() + pin.getName())));
         return Integer.parseInt(reader.readLine());
     }
+
+    public void configurePin(Pin pin) throws FileNotFoundException {
+        //do nothing now
+    }
 }

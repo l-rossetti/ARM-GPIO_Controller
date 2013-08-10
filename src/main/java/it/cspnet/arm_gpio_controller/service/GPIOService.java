@@ -15,4 +15,6 @@ import java.io.IOException;
      public abstract void writePinValue( Pin pin, int value ) throws FileNotFoundException;
      
      public abstract int readPinValue( Pin pin ) throws FileNotFoundException, IOException;
+     
+     public abstract void configurePin(Pin pin) throws FileNotFoundException;
 }
