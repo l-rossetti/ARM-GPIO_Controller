@@ -22,11 +22,6 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        if (args.length == 0) {
-            printHelp();
-            System.exit(1);
-        }
-
         /////////// CUBIEBOARD ///////////
         //create a Pin
         Pin cubieboard_pe11 = new Pin("pe11", cubieboard_path);
@@ -92,8 +87,5 @@ public class Main {
             System.exit(3);
         }
     }
-
-    private static void printHelp() {
-        System.out.println("Usage:\njava program {PIN_NAME}");
-    }
+    
 }
