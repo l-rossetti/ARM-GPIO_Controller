@@ -1,4 +1,7 @@
 ARM-GPIO_Controller
 ===================
 
-Maven Java project used to access and modify easily GPIO registers in ARM architectures.The project starts providing support to Cubieboard and Raspberry.
+A Maven Java library used to access and modify easily the GPIO pins in different singleboard ARM machines.
+The goal of the project is to provide access of the GPIO of different machines in the same way.
+
+The project starts providing support to Cubieboard and Raspberry PI.
