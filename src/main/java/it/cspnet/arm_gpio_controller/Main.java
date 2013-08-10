@@ -41,7 +41,7 @@ public class Main {
 
             /////////// RASPBERRY ///////////
             //return the name: name is "gpio11/"
-            String raspberry_pin_name = raspberry_GPIOService.exportPin(11, raspberry_path);
+            String raspberry_pin_name = raspberry_GPIOService.exportPin("11", raspberry_path);
             //create a Raspberry Pin
             raspberry_gpio11 = new Pin(raspberry_pin_name, raspberry_path);
             //when configure raspberry you MUST configure Pin Type on model and call configurePin method

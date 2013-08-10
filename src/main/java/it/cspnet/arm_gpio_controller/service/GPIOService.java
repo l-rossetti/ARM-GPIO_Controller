@@ -18,7 +18,7 @@ import java.io.IOException;
      
      public abstract void configurePin( Pin pin ) throws FileNotFoundException;
      
-     public abstract String exportPin( int pinNumber, String path ) throws FileNotFoundException;
+     public abstract String exportPin( String pinNumber, String path ) throws FileNotFoundException;
      
-     public abstract void unexportPin( int pinNumber, String path ) throws FileNotFoundException;
+     public abstract void unexportPin( String pinNumber, String path ) throws FileNotFoundException;
 }

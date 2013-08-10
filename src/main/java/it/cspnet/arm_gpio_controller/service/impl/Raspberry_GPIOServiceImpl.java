@@ -48,7 +48,7 @@ public class Raspberry_GPIOServiceImpl implements GPIOService {
         writer.close();
     }
     
-    public String exportPin(int pinNumber, String path) throws FileNotFoundException {
+    public String exportPin(String pinNumber, String path) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(new File(path + "export" ));
         writer.print(pinNumber);
         writer.flush();
@@ -56,7 +56,7 @@ public class Raspberry_GPIOServiceImpl implements GPIOService {
         return "gpio"+pinNumber+"/";
     }
 
-    public void unexportPin(int pinNumber, String path) throws FileNotFoundException {
+    public void unexportPin(String pinNumber, String path) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(new File(path + "unexport" ));
         writer.print(pinNumber);
         writer.flush();
