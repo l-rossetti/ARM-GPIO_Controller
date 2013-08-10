@@ -12,8 +12,13 @@ import java.io.IOException;
  * @author Rossetti Leonardo, email: leonardo.rossetti5@gmail.com
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
-//a simple DEMO blinking led application
+
+//a simple blinking led DEMO application
 public class Main {
+    
+    private static final String cubieboard_path = "/sys/devices/virtual/misc/sun4i-gpio/pin/";
+    //for raspberry: REMEMBER THE / CHAR AT THE END OF THE NAME AND AT THE END OF THE PATH
+    private static final String raspberry_path = "/sys/class/gpio/";
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -24,23 +29,38 @@ public class Main {
 
         /////////// CUBIEBOARD ///////////
         //create a Pin
-        Pin cubieboard_pe11 = new Pin("pe11", "/sys/devices/virtual/misc/sun4i-gpio/pin/");
+        Pin cubieboard_pe11 = new Pin("pe11", cubieboard_path);
         cubieboard_pe11.setType(Pin.OUTPUT);
-        //Create a specific GPIO Service Manager and configure pin
+        //Create a specific GPIO Service Manager then configure pin
         GPIOService cubieboard_GPIOService = new Cubieboard_GPIOServiceImpl();
 
         /////////// RASPBERRY ///////////
-        //create a Pin
-        Pin raspberry_gpio11 = new Pin("gpio11/", "/sys/class/gpio/");
-        //REMEMBER THE / CHAR AT THE END OF THE NAME AND AT THE END OF THE PATH
-        raspberry_gpio11.setType(Pin.OUTPUT);
-        //Create a specific GPIO Service Manager and configure pin
+        Pin raspberry_gpio11 = new Pin();
+        //Create a specific GPIO Service Manager then configure pin
         GPIOService raspberry_GPIOService = new Raspberry_GPIOServiceImpl();
 
         try {
             //configure pins
+            /////////// CUBIEBOARD ///////////
             cubieboard_GPIOService.configurePin(cubieboard_pe11);
+
+            /////////// RASPBERRY ///////////
+            //return the name: name is "gpio11/"
+            String raspberry_pin_name = raspberry_GPIOService.exportPin(11, raspberry_path);
+            //create a Raspberry Pin
+            raspberry_gpio11 = new Pin(raspberry_pin_name, raspberry_path);
+            //when configure raspberry you MUST configure Pin Type on model and call configurePin method
+            raspberry_gpio11.setType(Pin.OUTPUT);
             raspberry_GPIOService.configurePin(raspberry_gpio11);
+
+        } catch (FileNotFoundException ex) {
+            System.err.println("### ERROR: ###\n\n" + ex.toString());
+            System.exit(2);
+        }
+
+
+        // end of config, now start program
+        try {
 
             //read value on init
             cubieboard_pe11.setValue(cubieboard_GPIOService.readPinValue(cubieboard_pe11));
@@ -63,7 +83,7 @@ public class Main {
                 System.out.println("RASPBERRY Led OFF");
 
                 Thread.sleep(500);
-            }
+            }            
         } catch (FileNotFoundException ex) {
             System.err.println("### ERROR: ###\n\n" + ex.toString());
             System.exit(2);

@@ -35,4 +35,13 @@ public class Cubieboard_GPIOServiceImpl implements GPIOService {
     public void configurePin(Pin pin) throws FileNotFoundException {
         //do nothing now
     }
+
+    public String exportPin(int pinNumber, String path) throws FileNotFoundException {
+        //do nothing, not used
+        return null;
+    }
+
+    public void unexportPin(int pinNumber, String path) throws FileNotFoundException {
+        //do nothing, not used
+    }
 }

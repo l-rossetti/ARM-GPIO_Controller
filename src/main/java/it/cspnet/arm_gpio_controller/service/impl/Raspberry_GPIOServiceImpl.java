@@ -37,13 +37,28 @@ public class Raspberry_GPIOServiceImpl implements GPIOService {
         //use the pin type: INPUT or OUTPUT
         //configure Pin for input and output
         //before configure Pin you need to be create and allowed the pin into the kernel
-        //to configure "echo 11 > /sys/class/gpio/export" and you enable pin named "pin11"
+        //to configure "echo 11 > /sys/class/gpio/export" and you enable pin named "pin11" or use exportPin() function
         PrintWriter writer = new PrintWriter(new File(pin.getPath() + pin.getName() + "direction" ));
         if (Pin.OUTPUT.equals(pin.getType())) {
             writer.print("out");
         } else if (Pin.INPUT.equals(pin.getType())) {
             writer.print("in");
         }
+        writer.flush();
+        writer.close();
+    }
+    
+    public String exportPin(int pinNumber, String path) throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(new File(path + "export" ));
+        writer.print(pinNumber);
+        writer.flush();
+        writer.close();
+        return "gpio"+pinNumber+"/";
+    }
+
+    public void unexportPin(int pinNumber, String path) throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(new File(path + "unexport" ));
+        writer.print(pinNumber);
         writer.flush();
         writer.close();
     }
