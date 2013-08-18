@@ -19,6 +19,8 @@ import java.io.PrintWriter;
  * for info https://sites.google.com/site/semilleroadt/raspberry-pi-tutorials/gpio
  */
 public class Raspberry_GPIOServiceImpl implements GPIOService {
+    
+    private static final String defaultPath = "/sys/class/gpio/";
 
     public void writePinValue(Pin pin, int value) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(new File(pin.getPath() + pin.getName() + "value" ));
@@ -61,5 +63,9 @@ public class Raspberry_GPIOServiceImpl implements GPIOService {
         writer.print(pinNumber);
         writer.flush();
         writer.close();
+    }
+
+    public Pin getNewPin(String name, String type) {
+        return new Pin(name, defaultPath, type);
     }
 }

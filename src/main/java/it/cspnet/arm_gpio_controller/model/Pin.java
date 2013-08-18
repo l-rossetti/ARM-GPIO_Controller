@@ -28,6 +28,12 @@ public class Pin {
         this.path = path;
     }
 
+    public Pin(String name, String path, String type) {
+        this.name = name;
+        this.path = path;
+        this.type = type;
+    }
+
     public String getName() {
         return name;
     }

@@ -21,4 +21,6 @@ import java.io.IOException;
      public abstract String exportPin( String pinNumber, String path ) throws FileNotFoundException;
      
      public abstract void unexportPin( String pinNumber, String path ) throws FileNotFoundException;
+     
+     public abstract Pin getNewPin(String name, String type);
 }
