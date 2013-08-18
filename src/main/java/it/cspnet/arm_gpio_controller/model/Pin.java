@@ -24,13 +24,13 @@ public class Pin {
     }
 
     public Pin(String name, String path) {
+        this();
         this.name = name;
         this.path = path;
     }
 
     public Pin(String name, String path, String type) {
-        this.name = name;
-        this.path = path;
+        this(name, path);
         this.type = type;
     }
 
