@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 
 public class Raspberry_ConfigurationServiceImpl implements ConfigurationService {
 
+    @Override
     public String readPath() throws FileNotFoundException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

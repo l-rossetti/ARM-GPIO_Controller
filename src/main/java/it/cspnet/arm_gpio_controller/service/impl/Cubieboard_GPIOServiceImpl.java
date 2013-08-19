@@ -18,6 +18,7 @@ public class Cubieboard_GPIOServiceImpl implements GPIOService {
 
     private static final String defaultPath = "/sys/devices/virtual/misc/sun4i-gpio/pin/";
 
+    @Override
     public void writePinValue(Pin pin, int value) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(new File(pin.getPath() + pin.getName()));
         writer.print(value);
@@ -26,24 +27,29 @@ public class Cubieboard_GPIOServiceImpl implements GPIOService {
         writer.close();
     }
 
+    @Override
     public int readPinValue(Pin pin) throws FileNotFoundException, IOException {
         BufferedReader reader = new BufferedReader(new FileReader(new File(pin.getPath() + pin.getName())));
         return Integer.parseInt(reader.readLine());
     }
 
+    @Override
     public void configurePin(Pin pin) throws FileNotFoundException {
         //do nothing now
     }
 
+    @Override
     public String exportPin(String pinNumber, String path) throws FileNotFoundException {
         //do nothing, not used
         return null;
     }
 
+    @Override
     public void unexportPin(String pinNumber, String path) throws FileNotFoundException {
         //do nothing, not used
     }
 
+    @Override
     public Pin getNewPin(String name, String type) {
         return new Pin(name, defaultPath, type);
     }

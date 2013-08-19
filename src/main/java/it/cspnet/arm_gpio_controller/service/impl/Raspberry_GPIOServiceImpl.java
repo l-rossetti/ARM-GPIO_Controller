@@ -22,6 +22,7 @@ public class Raspberry_GPIOServiceImpl implements GPIOService {
     
     private static final String defaultPath = "/sys/class/gpio/";
 
+    @Override
     public void writePinValue(Pin pin, int value) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(new File(pin.getPath() + pin.getName() + "value" ));
         writer.print(value);
@@ -30,11 +31,13 @@ public class Raspberry_GPIOServiceImpl implements GPIOService {
         writer.close();
     }
 
+    @Override
     public int readPinValue(Pin pin) throws FileNotFoundException, IOException {
         BufferedReader reader = new BufferedReader(new FileReader(new File(pin.getPath() + pin.getName() + "value" )));
         return Integer.parseInt(reader.readLine());
     }
 
+    @Override
     public void configurePin(Pin pin) throws FileNotFoundException {
         //use the pin type: INPUT or OUTPUT
         //configure Pin for input and output
@@ -50,6 +53,7 @@ public class Raspberry_GPIOServiceImpl implements GPIOService {
         writer.close();
     }
     
+    @Override
     public String exportPin(String pinNumber, String path) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(new File(path + "export" ));
         writer.print(pinNumber);
@@ -58,6 +62,7 @@ public class Raspberry_GPIOServiceImpl implements GPIOService {
         return "gpio"+pinNumber+"/";
     }
 
+    @Override
     public void unexportPin(String pinNumber, String path) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(new File(path + "unexport" ));
         writer.print(pinNumber);
@@ -65,6 +70,7 @@ public class Raspberry_GPIOServiceImpl implements GPIOService {
         writer.close();
     }
 
+    @Override
     public Pin getNewPin(String name, String type) {
         return new Pin(name, defaultPath, type);
     }
