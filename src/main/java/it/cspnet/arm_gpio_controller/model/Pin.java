@@ -1,37 +1,35 @@
 package it.cspnet.arm_gpio_controller.model;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  *
  * @author Rossetti Leonardo, email: leonardo.rossetti5@gmail.com
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
-
-public class Pin {
+public abstract class Pin {
 
     public static final String INPUT = "input";
     public static final String OUTPUT = "output";
-    public static final int ON_HIGH = 0x1;     
+    public static final int ON_HIGH = 0x1;
     public static final int OFF_HIGH = 0x0;
-    public static final int ON_LOW = 0x0;     
-    public static final int OFF_LOW= 0x1; 
+    public static final int ON_LOW = 0x0;
+    public static final int OFF_LOW = 0x1;
     
-    private String name;
-    private String path;
-    private int value;
-    private String type;
-    
-    public Pin() {
-    }
+    protected String name;
+    protected String path;
+    protected int value;
+    protected String type;
 
-    public Pin(String name, String path) {
-        this();
+    public Pin(String name, String type) {
         this.name = name;
-        this.path = path;
+        this.type = type;
     }
 
     public Pin(String name, String path, String type) {
-        this(name, path);
-        this.type = type;
+        this(name, type);
+        this.path = path;
     }
 
     public String getName() {
@@ -50,21 +48,13 @@ public class Pin {
         this.path = path;
     }
 
-    public int getValue() {
-        return value;
-    }
+    public abstract int getValue() throws FileNotFoundException, IOException;
 
-    public void setValue(int value) {
-        this.value = value;
-    }
+    public abstract void setValue(int value) throws FileNotFoundException;
 
-    public String getType() {
-        return type;
-    }
+    public abstract String getType();
 
-    public void setType(String type) {
-        this.type = type;
-    }
+    public abstract void setType(String type) throws FileNotFoundException;
 
     @Override
     public int hashCode() {
@@ -91,5 +81,4 @@ public class Pin {
         }
         return true;
     }
-    
 }
