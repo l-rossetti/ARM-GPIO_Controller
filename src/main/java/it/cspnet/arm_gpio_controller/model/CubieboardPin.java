@@ -12,13 +12,13 @@ import java.io.PrintWriter;
  * @author Rossetti Leonardo, email: leonardo.rossetti5@gmail.com
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
-public class Cubieboard_Pin extends Pin {
+public class CubieboardPin extends Pin {
 
     private static final String defaultPath = "/sys/devices/virtual/misc/sun4i-gpio/pin/";
     private PrintWriter writer;
     private BufferedReader reader;
 
-    public Cubieboard_Pin(String name, String type) throws FileNotFoundException {
+    public CubieboardPin(String name, String type) throws FileNotFoundException {
         super(name, defaultPath, type);
         writer = new PrintWriter(new File(this.path + this.name));
         reader = new BufferedReader(new FileReader(new File(this.path + this.name)));

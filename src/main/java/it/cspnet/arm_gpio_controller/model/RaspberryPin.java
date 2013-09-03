@@ -12,7 +12,7 @@ import java.io.PrintWriter;
  * @author Rossetti Leonardo, email: leonardo.rossetti5@gmail.com
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
-public class Raspberry_Pin extends Pin {
+public class RaspberryPin extends Pin {
 
     private static final String defaultPath = "/sys/class/gpio/";
     
@@ -20,7 +20,7 @@ public class Raspberry_Pin extends Pin {
     private PrintWriter writer;
     private BufferedReader reader;
 
-    public Raspberry_Pin(String name, String type) throws FileNotFoundException {
+    public RaspberryPin(String name, String type) throws FileNotFoundException {
         super(name, defaultPath, type);
         pinNumber = Integer.parseInt(name);
         if (!name.startsWith("gpio")) {
