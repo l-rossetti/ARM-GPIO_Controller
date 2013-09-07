@@ -1,6 +1,6 @@
-package it.cspnet.arm_gpio_controller.service.impl;
+package com.github.arm_gpio_controller.service.impl;
 
-import it.cspnet.arm_gpio_controller.service.ConfigurationService;
+import com.github.arm_gpio_controller.service.ConfigurationService;
 import java.io.FileNotFoundException;
 
 /**

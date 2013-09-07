@@ -1,9 +1,9 @@
-package it.cspnet.arm_gpio_controller;
+package com.github.arm_gpio_controller;
 
-import it.cspnet.arm_gpio_controller.service.GPIOService;
-import it.cspnet.arm_gpio_controller.service.impl.Cubieboard_GPIOServiceImpl;
-import it.cspnet.arm_gpio_controller.model.Pin;
-import it.cspnet.arm_gpio_controller.service.impl.Raspberry_GPIOServiceImpl;
+import com.github.arm_gpio_controller.service.GPIOService;
+import com.github.arm_gpio_controller.service.impl.Cubieboard_GPIOServiceImpl;
+import com.github.arm_gpio_controller.model.Pin;
+import com.github.arm_gpio_controller.service.impl.Raspberry_GPIOServiceImpl;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 

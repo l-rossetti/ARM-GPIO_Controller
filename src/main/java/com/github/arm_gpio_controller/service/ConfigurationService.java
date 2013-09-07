@@ -1,4 +1,4 @@
-package it.cspnet.arm_gpio_controller.service;
+package com.github.arm_gpio_controller.service;
 
 import java.io.FileNotFoundException;
 

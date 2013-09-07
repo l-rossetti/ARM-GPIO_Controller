@@ -1,6 +1,6 @@
-package it.cspnet.arm_gpio_controller.service;
+package com.github.arm_gpio_controller.service;
 
-import it.cspnet.arm_gpio_controller.model.Pin;
+import com.github.arm_gpio_controller.model.Pin;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 

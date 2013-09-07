@@ -1,4 +1,4 @@
-package it.cspnet.arm_gpio_controller.model;
+package com.github.arm_gpio_controller.model;
 
 import java.io.BufferedReader;
 import java.io.File;
