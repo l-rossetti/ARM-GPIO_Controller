@@ -1,8 +1,5 @@
 package com.github.arm_gpio_controller.model;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 /**
  *
  * @author Rossetti Leonardo, email: leonardo.rossetti5@gmail.com
@@ -17,20 +14,13 @@ public abstract class Pin {
     public static final int ON_LOW = 0x0;
     public static final int OFF_LOW = 0x1;
     
+    protected int ON;
+    protected int OFF;
+    
     protected String name;
     protected String path;
     protected int value;
     protected String type;
-
-    public Pin(String name, String type) {
-        this.name = name;
-        this.type = type;
-    }
-
-    public Pin(String name, String path, String type) {
-        this(name, type);
-        this.path = path;
-    }
 
     public String getName() {
         return name;
@@ -48,13 +38,21 @@ public abstract class Pin {
         this.path = path;
     }
 
-    public abstract int getValue() throws FileNotFoundException, IOException;
+    public String getType() {
+        return type;
+    }
 
-    public abstract void setValue(int value) throws FileNotFoundException;
+    public void setType(String type) throws Exception {
+        this.type = type;
+    }
 
-    public abstract String getType();
+    public abstract int getValue() throws Exception;
 
-    public abstract void setType(String type) throws FileNotFoundException;
+    public abstract void setValue(int value) throws Exception;
+
+    public abstract int ON();
+
+    public abstract int OFF();
 
     @Override
     public int hashCode() {

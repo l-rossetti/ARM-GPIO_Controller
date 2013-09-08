@@ -15,13 +15,17 @@ import java.io.PrintWriter;
 public class RaspberryPin extends Pin {
 
     private static final String defaultPath = "/sys/class/gpio/";
-    
     private int pinNumber;
     private PrintWriter writer;
     private BufferedReader reader;
+    public int ON = Pin.ON_HIGH;
+    public int OFF = Pin.OFF_HIGH;
 
     public RaspberryPin(String name, String type) throws FileNotFoundException {
-        super(name, defaultPath, type);
+        this.name = name;
+        this.type = type;
+        this.path = defaultPath;
+
         pinNumber = Integer.parseInt(name);
         if (!name.startsWith("gpio")) {
             //must export the pin
@@ -31,8 +35,6 @@ public class RaspberryPin extends Pin {
             writer.close();
             name = "gpio" + name + "/";
         }
-        //set Input or output
-        this.setType(type);
         writer = new PrintWriter(new File(path + name + "value"));
         reader = new BufferedReader(new FileReader(new File(path + name + "value")));
     }
@@ -49,11 +51,6 @@ public class RaspberryPin extends Pin {
     }
 
     @Override
-    public String getType() {
-        return this.type;
-    }
-
-    @Override
     public void setType(String type) throws FileNotFoundException {
         writer = new PrintWriter(new File(path + name + "direction"));
         if (Pin.OUTPUT.equals(type)) {
@@ -64,6 +61,16 @@ public class RaspberryPin extends Pin {
         writer.flush();
         writer.close();
         this.type = type;
+    }
+
+    @Override
+    public int ON() {
+        return this.ON;
+    }
+
+    @Override
+    public int OFF() {
+        return this.OFF;
     }
 
     @Override
