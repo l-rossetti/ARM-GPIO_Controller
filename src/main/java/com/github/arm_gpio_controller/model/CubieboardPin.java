@@ -20,13 +20,15 @@ public class CubieboardPin extends Pin {
     public int ON = Pin.ON_HIGH;
     public int OFF = Pin.OFF_HIGH;
 
-    public CubieboardPin(String name, String type) throws FileNotFoundException {
+    public CubieboardPin(String name, String type) throws FileNotFoundException, IOException {
         this.name = name;
         this.type = type;
         this.path = defaultPath;
-
+        //open final PrintWriter and BufferedReader
         writer = new PrintWriter(new File(this.path + this.name));
         reader = new BufferedReader(new FileReader(new File(this.path + this.name)));
+        //and read initial value
+        this.getValue();
     }
 
     @Override
