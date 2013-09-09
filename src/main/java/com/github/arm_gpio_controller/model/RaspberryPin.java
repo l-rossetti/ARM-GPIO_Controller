@@ -21,11 +21,11 @@ public class RaspberryPin extends Pin {
     public int ON = Pin.ON_HIGH;
     public int OFF = Pin.OFF_HIGH;
 
-    public RaspberryPin(String name, String type) throws FileNotFoundException {
+    public RaspberryPin(String name, String type) throws FileNotFoundException, IOException {
         this.name = name;
-        this.type = type;
         this.path = defaultPath;
 
+        //export pin
         pinNumber = Integer.parseInt(name);
         if (!name.startsWith("gpio")) {
             //must export the pin
@@ -35,8 +35,15 @@ public class RaspberryPin extends Pin {
             writer.close();
             name = "gpio" + name + "/";
         }
+        //set direction
+        this.setType(type);
+        
+        //open final PrintWriter and BufferedReader
         writer = new PrintWriter(new File(path + name + "value"));
         reader = new BufferedReader(new FileReader(new File(path + name + "value")));
+        
+        //and setup initial value
+        this.getValue();
     }
 
     public int getValue() throws FileNotFoundException, IOException {
