@@ -37,7 +37,7 @@ public class ServicesImpl implements Services {
         }
         //real code
         for (int i = 0; i < pinArrayLength; i++) {
-            toWriteValue = (value | (mask << i) ) >> i;
+            toWriteValue = (value & (mask << i) ) >> i;
             pinArray[i].setValue( (int)toWriteValue );
         }
     }
