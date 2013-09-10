@@ -18,45 +18,42 @@ public class RaspberryPin extends Pin {
     private int pinNumber;
     private PrintWriter writer;
     private BufferedReader reader;
-    public int ON = Pin.ON_HIGH;
-    public int OFF = Pin.OFF_HIGH;
 
     public RaspberryPin(String name, String type) throws FileNotFoundException, IOException {
-        this.name = name;
-        this.path = defaultPath;
+       super(name, type);
         //export pin
         pinNumber = Integer.parseInt(name);
         if (!name.startsWith("gpio")) {
             //must export the pin
-            writer = new PrintWriter(new File(path + "export"));
+            writer = new PrintWriter(new File(defaultPath + "export"));
             writer.print(name);
             writer.flush();
             writer.close();
             name = "gpio" + name + "/";
         }
-        //set direction
+        //set direction, default contructor write the general type, but Raspberry need some init function
         this.setType(type);
         //open final PrintWriter and BufferedReader
-        writer = new PrintWriter(new File(path + name + "value"));
-        reader = new BufferedReader(new FileReader(new File(path + name + "value")));
+        writer = new PrintWriter(new File(defaultPath + name + "value"));
+        reader = new BufferedReader(new FileReader(new File(defaultPath + name + "value")));
         //and read initial value
         this.getValue();
     }
 
+    @Override
     public int getValue() throws FileNotFoundException, IOException {
-        this.value = Integer.parseInt(reader.readLine());
-        return value;
+        return Integer.parseInt(reader.readLine());
     }
 
+    @Override
     public void setValue(int value) throws FileNotFoundException {
         writer.print(value);
         writer.flush();
-        this.value = value;
     }
 
     @Override
     public void setType(String type) throws FileNotFoundException {
-        writer = new PrintWriter(new File(path + name + "direction"));
+        writer = new PrintWriter(new File(defaultPath + name + "direction"));
         if (Pin.OUTPUT.equals(type)) {
             writer.print("out");
         } else if (Pin.INPUT.equals(type)) {
@@ -69,19 +66,19 @@ public class RaspberryPin extends Pin {
 
     @Override
     public int ON() {
-        return this.ON;
+        return 0x1;
     }
 
     @Override
     public int OFF() {
-        return this.OFF;
+        return 0x0;
     }
 
     @Override
     protected void finalize() throws Throwable {
         try {
             writer.close();//to close read/setValue
-            writer = new PrintWriter(new File(path + "unexport"));
+            writer = new PrintWriter(new File(defaultPath + "unexport"));
             writer.print(pinNumber);
             writer.flush();
             writer.close();

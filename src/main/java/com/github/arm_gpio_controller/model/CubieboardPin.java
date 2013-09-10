@@ -17,41 +17,35 @@ public class CubieboardPin extends Pin {
     private static final String defaultPath = "/sys/devices/virtual/misc/sun4i-gpio/pin/";
     private PrintWriter writer;
     private BufferedReader reader;
-    public int ON = Pin.ON_HIGH;
-    public int OFF = Pin.OFF_HIGH;
 
     public CubieboardPin(String name, String type) throws FileNotFoundException, IOException {
-        this.name = name;
-        this.type = type;
-        this.path = defaultPath;
+        super(name, type);
         //open final PrintWriter and BufferedReader
-        writer = new PrintWriter(new File(this.path + this.name));
-        reader = new BufferedReader(new FileReader(new File(this.path + this.name)));
+        writer = new PrintWriter(new File(this.defaultPath + this.name));
+        reader = new BufferedReader(new FileReader(new File(this.defaultPath + this.name)));
         //and read initial value
         this.getValue();
     }
 
     @Override
     public int getValue() throws FileNotFoundException, IOException {
-        this.value = Integer.parseInt(reader.readLine());
-        return value;
+        return Integer.parseInt(reader.readLine());
     }
 
     @Override
     public void setValue(int value) throws FileNotFoundException {
         writer.print(value);
         writer.flush();
-        this.value = value;
     }
 
     @Override
     public int ON() {
-        return this.ON;
+        return 0x1;
     }
 
     @Override
     public int OFF() {
-        return this.OFF;
+        return 0x0;
     }
 
     @Override

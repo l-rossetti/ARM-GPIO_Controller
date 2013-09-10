@@ -7,21 +7,16 @@ import com.github.arm_gpio_controller.model.Pin;
  * @author Rossetti Leonardo, email: leonardo.rossetti5@gmail.com
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
-//a simple DEMO on hot to add a Pin configuration for a new device
+
+//a simple DEMO on how to add a Pin configuration for a new device
 public class VirtualPin extends Pin {
+    
+    //if you have a REAL pin value will be read and write directy, value variable will be removed
+    private int value;
 
-    public int ON = Pin.ON_HIGH;
-    public int OFF = Pin.OFF_HIGH;
-//    or
-//    public int ON = Pin.ON_LOW;
-//    public int OFF = Pin.OFF_LOW;
-
-    public VirtualPin() {
-        this.name = name;
-        this.type = type;
-//        this.path = path of your pins directory
-        
-//        initialization code
+    public VirtualPin(String name, String type) {
+        super(name, type);        
+        //your initialization code
     }
 
     @Override
@@ -38,11 +33,13 @@ public class VirtualPin extends Pin {
 
     @Override
     public int ON() {
-        return this.ON;
+        return 0x1; //with ON-HIGH
+        //or 0x0 with ON-LOW
     }
 
     @Override
     public int OFF() {
-        return this.OFF;
+        return 0x0; //with OFF-HIGH
+        //or 0x1 with OFF-LOW
     }
 }
