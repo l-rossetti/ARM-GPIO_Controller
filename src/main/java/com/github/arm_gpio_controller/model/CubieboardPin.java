@@ -17,6 +17,8 @@ public class CubieboardPin extends Pin {
     private static final String defaultPath = "/sys/devices/virtual/misc/sun4i-gpio/pin/";
     private PrintWriter writer;
     private BufferedReader reader;
+    private static final int ON = 0x1;
+    private static final int OFF = 0x0;
 
     public CubieboardPin(String name, String type) throws FileNotFoundException, IOException {
         super(name, type);
@@ -40,22 +42,22 @@ public class CubieboardPin extends Pin {
 
     @Override
     public int ON() {
-        return 0x1;
+        return this.ON;
     }
 
     @Override
     public int OFF() {
-        return 0x0;
+        return this.OFF;
     }
 
     @Override
     public boolean isON(int value) {
-        return value == 0x1; //retur true if passed value is equals to 0x1, the true value
+        return value == this.ON; //return true if passed value is equals to 0x1, the true value
     }
 
     @Override
     public boolean isOFF(int value) {
-        return value == 0x0; //retur true if passed value is equals to 0x0, the true value
+        return value == this.OFF; //return true if passed value is equals to 0x0, the true value
     }
 
     //destroy method
