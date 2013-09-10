@@ -42,4 +42,14 @@ public class VirtualPin extends Pin {
         return 0x0; //with OFF-HIGH
         //or 0x1 with OFF-LOW
     }
+
+    @Override
+    public boolean isON(int value) {
+        return value==0x1; //retur true if passed value is equals to 0x1, the true value
+    }
+
+    @Override
+    public boolean isOFF(int value) {
+        return value==0x0; //retur true if passed value is equals to 0x0, the true value
+    }
 }

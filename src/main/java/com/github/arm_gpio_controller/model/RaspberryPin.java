@@ -20,7 +20,7 @@ public class RaspberryPin extends Pin {
     private BufferedReader reader;
 
     public RaspberryPin(String name, String type) throws FileNotFoundException, IOException {
-       super(name, type);
+        super(name, type);
         //export pin
         pinNumber = Integer.parseInt(name);
         if (!name.startsWith("gpio")) {
@@ -74,6 +74,17 @@ public class RaspberryPin extends Pin {
         return 0x0;
     }
 
+    @Override
+    public boolean isON(int value) {
+        return value == 0x1; //retur true if passed value is equals to 0x1, the true value
+    }
+
+    @Override
+    public boolean isOFF(int value) {
+        return value == 0x0; //retur true if passed value is equals to 0x0, the true value
+    }
+
+    //destroy method
     @Override
     protected void finalize() throws Throwable {
         try {

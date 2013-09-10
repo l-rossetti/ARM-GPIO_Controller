@@ -49,6 +49,17 @@ public class CubieboardPin extends Pin {
     }
 
     @Override
+    public boolean isON(int value) {
+        return value == 0x1; //retur true if passed value is equals to 0x1, the true value
+    }
+
+    @Override
+    public boolean isOFF(int value) {
+        return value == 0x0; //retur true if passed value is equals to 0x0, the true value
+    }
+
+    //destroy method
+    @Override
     protected void finalize() throws Throwable {
         try {
             writer.close();

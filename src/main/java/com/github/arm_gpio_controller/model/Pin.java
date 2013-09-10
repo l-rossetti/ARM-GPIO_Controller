@@ -41,6 +41,10 @@ public abstract class Pin {
     public abstract int ON();
 
     public abstract int OFF();
+    
+    public abstract boolean isON(int value);
+    
+    public abstract boolean isOFF(int value);
 
     @Override
     public int hashCode() {
