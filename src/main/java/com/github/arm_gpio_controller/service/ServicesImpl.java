@@ -30,7 +30,7 @@ public class ServicesImpl implements Services {
         int pinArrayLength;
         long toWriteValue;
         long mask = 0x1;
-        if (pinArray.length >= 64) {;
+        if (pinArray.length >= 64) {
             pinArrayLength = 64;
         } else {
             pinArrayLength = pinArray.length;
