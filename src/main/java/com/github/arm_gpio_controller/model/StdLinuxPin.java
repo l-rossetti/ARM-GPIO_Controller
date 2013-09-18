@@ -12,19 +12,32 @@ import java.io.PrintWriter;
  * @author Rossetti Leonardo, email: leonardo.rossetti5@gmail.com
  * @author Sarti Francesco, email: francescosarti@libero.it
  */
-public class CubieboardPin extends Pin {
+public class StdLinuxPin extends Pin {
 
-    private static final String defaultPath = "/sys/devices/virtual/misc/sun4i-gpio/pin/";
+    private static final String defaultPath = "/sys/class/gpio/";
+    private int pinNumber;
     private PrintWriter writer;
     private BufferedReader reader;
     private static final int ON = 0x1;
     private static final int OFF = 0x0;
 
-    public CubieboardPin(String name, String type) throws FileNotFoundException, IOException {
+    public StdLinuxPin(String name, String type) throws FileNotFoundException, IOException {
         super(name, type);
+        //export pin
+        pinNumber = Integer.parseInt(name);
+        if (!name.startsWith("gpio")) {
+            //must export the pin
+            writer = new PrintWriter(new File(defaultPath + "export"));
+            writer.print(name);
+            writer.flush();
+            writer.close();
+            name = "gpio" + name + "/";
+        }
+        //set direction, default contructor write the general type, but Raspberry need some init function
+        this.setType(type);
         //open final PrintWriter and BufferedReader
-        writer = new PrintWriter(new File(this.defaultPath + this.name));
-        reader = new BufferedReader(new FileReader(new File(this.defaultPath + this.name)));
+        writer = new PrintWriter(new File(defaultPath + name + "value"));
+        reader = new BufferedReader(new FileReader(new File(defaultPath + name + "value")));
         //and read initial value
         this.getValue();
     }
@@ -38,6 +51,19 @@ public class CubieboardPin extends Pin {
     public void setValue(int value) throws FileNotFoundException {
         writer.print(value);
         writer.flush();
+    }
+
+    @Override
+    public void setType(String type) throws FileNotFoundException {
+        writer = new PrintWriter(new File(defaultPath + name + "direction"));
+        if (Pin.OUTPUT.equals(type)) {
+            writer.print("out");
+        } else if (Pin.INPUT.equals(type)) {
+            writer.print("in");
+        }
+        writer.flush();
+        writer.close();
+        this.type = type;
     }
 
     @Override
@@ -64,6 +90,10 @@ public class CubieboardPin extends Pin {
     @Override
     protected void finalize() throws Throwable {
         try {
+            writer.close();//to close read/setValue
+            writer = new PrintWriter(new File(defaultPath + "unexport"));
+            writer.print(pinNumber);
+            writer.flush();
             writer.close();
             reader.close();
         } finally {

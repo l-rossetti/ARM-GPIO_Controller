@@ -1,8 +1,8 @@
 package com.github.arm_gpio_controller.demo;
 
-import com.github.arm_gpio_controller.model.CubieboardPin;
+import com.github.arm_gpio_controller.model.Sun4iPin;
 import com.github.arm_gpio_controller.model.Pin;
-import com.github.arm_gpio_controller.model.RaspberryPin;
+import com.github.arm_gpio_controller.model.StdLinuxPin;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -19,11 +19,11 @@ public class Main {
         try {
             /////////// CUBIEBOARD ///////////
             //create a Pin
-            Pin cubieboard_pe11 = new CubieboardPin("pe11", Pin.OUTPUT);
+            Pin cubieboard_pe11 = new Sun4iPin("pe11", Pin.OUTPUT);
 
             /////////// RASPBERRY ///////////
             //create a Pin        
-            Pin raspberry_gpio11 = new RaspberryPin("11", Pin.OUTPUT);
+            Pin raspberry_gpio11 = new StdLinuxPin("11", Pin.OUTPUT);
 
             while (true) {
                 //ON
